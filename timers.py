@@ -1,12 +1,15 @@
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
-def live_utc_clock():
+def get_nearest_multiple_of_1():
+    current_time = datetime.utcnow()
+    next_minute = current_time.replace(second=0, microsecond=0) + timedelta(minutes=1)
+    remaining_seconds = int((next_minute - current_time).total_seconds())
+    return remaining_seconds
+def utc_countdown_nearest_multiple_of_1():
     while True:
-        current_utc_time = datetime.utcnow()
-        minutes, seconds = current_utc_time.minute, current_utc_time.second
-        print(f"UTC Time:{minutes:02d}:{seconds:02d}", end='\r')
-        time.sleep(1)
+        remaining_seconds = get_nearest_multiple_of_1()
+        counter_data = {"counter": remaining_seconds-3}
+        print(remaining_seconds,end='\r')
 
-if __name__ == "__main__":
-    live_utc_clock()
+utc_countdown_nearest_multiple_of_1()        

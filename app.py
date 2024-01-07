@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 kline_data_1m = None
 data=None
-model_1m = joblib.load('Model_1m.joblib')
+model_1m = joblib.load('Model_1m_.joblib')
 def get_nearest_multiple_of_1():
     current_time = datetime.utcnow()
     next_minute = current_time.replace(second=0, microsecond=0) + timedelta(minutes=1)
